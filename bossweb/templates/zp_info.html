@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+
+
+
+    <table border="1" width="60%" bgcolor="#e9faff" cellpadding="2">
+        <caption>招聘信息</caption>
+        <tr align="center">
+            <!--<td colspan="2">时间\日期</td>-->
+            <td>职位</td>
+            <td>公司名称</td>
+            <td>薪资</td>
+            <td>公司类别</td>
+            <td>公司人数</td>
+            <td>发布人姓名</td>
+            <td>联系方式</td>
+        </tr>
+        {% for i in info1 %}
+        <tr align="center">
+            <!--<td colspan="2">时间\日期</td>-->
+            <td>{{ i.job_title }}</td>
+            <td>{{ i.comp_name }}</td>
+            <td>{{ i.job_price }}</td>
+            <td>{{ i.comp_line }}</td>
+            <td>{{ i.per_num }}</td>
+            <td>{{ i.publis_name}}</td>
+            <td width="80px"><a href="https://www.zhipin.com{{ i.src }}" target="_blank">立即沟通</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+            {% if info1.has_previous %}
+                <a href="?page={{ info1.previous_page_number }}"> 上一页</a>
+            {% endif %}
+
+            {% for i in info1.paginator.page_range %}
+            <!--<a href="/app/all_stu/?page={{ i }}">{{ i }}</a>-->
+                <a href="?page={{ i }}">{{ i }}</a>
+            {% endfor %}
+
+
+
+            <span>第{{ info1.number }}页，共{{ info1.paginator.num_pages }}页</span>
+            {% if info1.has_next %}
+                <a href="?page={{ info1.next_page_number }}">下一页</a>
+            {% endif %}
+
+</div>
+</body>
+</html>
